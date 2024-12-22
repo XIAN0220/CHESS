@@ -1,0 +1,23 @@
+def can_knight_move(checkerboard, x1, y1, x2, y2):
+    if x1 == x2 and y1 == y2:
+        return "No"
+    if checkerboard[x1][y1] != 1:
+        return "No"
+    knight_moves = [
+        (2, 1), (2, -1), (-2, 1), (-2, -1),
+        (1, 2), (1, -2), (-1, 2), (-1, -2)
+    ]
+    valid_move = any(x1 + dx == x2 and y1 + dy == y2 for dx, dy in knight_moves)
+    if valid_move and checkerboard[x2][y2] == 0:
+        return "Yes"
+
+    return "No"
+if __name__ == "__main__":
+
+    if True:
+        x1, y1 = map(int, input().split())
+        x2, y2 = map(int, input().split())
+        if not (0 <= x1 <= 7 and 0 <= y1 <= 7 and 0 <= x2 <= 7 and 0 <= y2 <= 7):
+            print("Coordinates must be between 0 and 7.")
+        else:
+            print(can_knight_move(checkerboard, x1, y1, x2, y2))
