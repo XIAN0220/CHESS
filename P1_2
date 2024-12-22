@@ -1,0 +1,25 @@
+def can_move(checkerboard, x1, y1, x2, y2):
+    if x1 == x2 and y1 == y2:
+        return "No"
+    if checkerboard[x1][y1] != 1:
+        return "No"
+    dx = x2 - x1
+    dy = y2 - y1
+    if dx != 0 and dy != 0 and abs(dx) != abs(dy):
+        return "No"
+    step_x = 0 if dx == 0 else dx // abs(dx)
+    step_y = 0 if dy == 0 else dy // abs(dy)
+    cx, cy = x1 + step_x, y1 + step_y
+    while cx != x2 or cy != y2:
+        if checkerboard[cx][cy] == 1:
+            return "No"
+        cx += step_x
+        cy += step_y
+    if checkerboard[x2][y2] == 1:
+        return "No"
+    return "Yes"
+
+
+x1, y1 = map(int, input().split())
+x2, y2 = map(int, input().split())
+print(can_move(checkerboard, x1, y1, x2, y2))
